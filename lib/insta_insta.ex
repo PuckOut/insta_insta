@@ -110,16 +110,21 @@ defmodule InstaInsta do
 
   def user_media(user_id, count, end_cursor \\ ""),
     do:
-      run("user_media", %{
-        user_id: user_id,
-        count: count,
-        end_cursor: end_cursor
-      })
+      run(
+        "user_media",
+        %{
+          user_id: user_id,
+          count: count,
+          end_cursor: end_cursor
+        },
+        fake_headers(true)
+      )
 
-  def search_by_tag(tag, max_id \\ ""), do: run("search_by_tag", %{tag: tag, max_id: max_id})
+  def search_by_tag(tag, max_id \\ ""),
+    do: run("search_by_tag", %{tag: tag, max_id: max_id}, fake_headers(true))
 
   def search_by_location(location_id, max_id \\ ""),
-    do: run("search_by_location", %{location_id: location_id, max_id: max_id})
+    do: run("search_by_location", %{location_id: location_id, max_id: max_id}, fake_headers(true))
 
   def search_user(query, context \\ "blended", rank_token \\ 0.4948977584648091),
     do:
@@ -133,39 +138,55 @@ defmodule InstaInsta do
 
   def media_comments(shortcode, count, end_cursor \\ ""),
     do:
-      run("media_comments", %{
-        shortcode: shortcode,
-        count: count,
-        end_cursor: end_cursor
-      })
+      run(
+        "media_comments",
+        %{
+          shortcode: shortcode,
+          count: count,
+          end_cursor: end_cursor
+        },
+        fake_headers(true)
+      )
 
   def media_likes(shortcode, count, end_cursor \\ ""),
     do:
-      run("media_likes", %{
-        shortcode: shortcode,
-        count: count,
-        end_cursor: end_cursor
-      })
+      run(
+        "media_likes",
+        %{
+          shortcode: shortcode,
+          count: count,
+          end_cursor: end_cursor
+        },
+        fake_headers(true)
+      )
 
   def followers_list(user_id, count, end_cursor \\ ""),
     do:
-      run("followers_list", %{
-        user_id: user_id,
-        count: count,
-        end_cursor: end_cursor
-      })
+      run(
+        "followers_list",
+        %{
+          user_id: user_id,
+          count: count,
+          end_cursor: end_cursor
+        },
+        fake_headers(true)
+      )
 
   def following_list(user_id, count, end_cursor \\ ""),
     do:
-      run("following_list", %{
-        user_id: user_id,
-        count: count,
-        end_cursor: end_cursor
-      })
+      run(
+        "following_list",
+        %{
+          user_id: user_id,
+          count: count,
+          end_cursor: end_cursor
+        },
+        fake_headers(true)
+      )
 
   @doc false
 
-  defp run(type, params, headers \\ fake_headers(true), options \\ []) do
+  defp run(type, params, headers \\ fake_headers(), options \\ []) do
     generate_url(type, params)
     |> get!(headers, options)
   end
