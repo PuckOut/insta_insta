@@ -228,8 +228,6 @@ defmodule InstaInsta do
       cookies = "csrftoken=#{random};"
     end
 
-    IO.inspect(cookies)
-
     [
       "content-type": "application/x-www-form-urlencoded",
       "X-CSRFToken": random,
