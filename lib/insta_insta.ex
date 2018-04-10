@@ -163,19 +163,56 @@ defmodule InstaInsta do
         end_cursor: end_cursor
       })
 
-  defp run(type, params, headers \\ fake_headers(), options \\ []) do
+  @doc false
+
+  defp run(type, params, headers \\ fake_headers(true), options \\ []) do
     generate_url(type, params)
     |> get!(headers, options)
   end
 
-  @doc false
-  defp fake_headers do
+  defp post_login(%{username: username, password: password}) do
+    login_body = "username=#{username}&password=#{password}"
+
+    HTTPoison.post(
+      "https://www.instagram.com/accounts/login/ajax/",
+      login_body,
+      fake_headers()
+    )
+  end
+
+  def get_cookies(username, password) do
+    {:ok, headers} = post_login(%{username: username, password: password})
+
+    cookies =
+      Enum.filter(headers.headers, fn
+        {"Set-Cookie", _} -> true
+        _ -> false
+      end)
+      |> Enum.map(fn x -> Enum.at(String.split(elem(x, 1), ";"), 0) end)
+      |> Enum.join("; ")
+
+    cookies
+  end
+
+  defp fake_headers(get_cookies \\ nil) do
     random = random_string()
+
+    if get_cookies do
+      cookies =
+        get_cookies(
+          Application.get_env(:insta_insta, :username),
+          Application.get_env(:insta_insta, :password)
+        )
+    else
+      cookies = "csrftoken=#{random};"
+    end
+
+    IO.inspect(cookies)
 
     [
       "content-type": "application/x-www-form-urlencoded",
       "X-CSRFToken": random,
-      Cookie: "csrftoken=#{random};",
+      cookie: cookies,
       Referer: "https://www.instagram.com/",
       "x-instagram-ajax": "1",
       "x-requested-with": "XMLHttpRequest"
@@ -183,7 +220,9 @@ defmodule InstaInsta do
   end
 
   defp random_string(length \\ 10) do
-    :crypto.strong_rand_bytes(length) |> Base.url_encode64() |> binary_part(0, length)
+    :crypto.strong_rand_bytes(length)
+    |> Base.url_encode64()
+    |> binary_part(0, length)
     |> String.replace(~r/[_-]/, "a")
   end
 end

@@ -10,8 +10,7 @@ defmodule InstaInsta.Mixfile do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       name: "InstaInsta",
-      description:
-        "Instagram JSON and HTML endpoints without and API key, inspired on InstaScrapex",
+      description: "Instagram JSON and HTML endpoints without a API key, inspired on InstaScrapex",
       package: [
         maintainers: ["Flavio Vinicius"],
         licenses: ["UNLICENSE"],

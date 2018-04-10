@@ -1,6 +1,6 @@
 # InstaInsta
 
-Scrapes Instagram JSON and HTML endpoints without and API key, inspired on InstaScrapex
+Scrapes Instagram JSON and HTML endpoints without a API key, inspired on InstaScrapex
 
 Use at your own risk
 
