@@ -83,4 +83,4 @@ Use at your own risk
 	InstaInsta is released into the public domain. See [UNLICENSE](http://unlicense.org/) for more information or the accompanying UNLICENSE file.
 
 ## Support
-  The development of this software is supported by [BRMediaGroup](http://br-mediagroup.com) LLC.
+  [Mail me if you want](mailto:flavio.killstars@gmail.com).
