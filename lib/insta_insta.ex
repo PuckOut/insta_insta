@@ -23,7 +23,7 @@ defmodule InstaInsta do
         end_cursor: end_cursor
       }),
       do:
-        "https://instagram.com/graphql/query/?query_id=17888483320059182&id=#{user_id}&first=#{
+        "https://www.instagram.com/graphql/query/?query_id=17888483320059182&id=#{user_id}&first=#{
           count
         }&after=#{end_cursor}"
 
@@ -89,7 +89,7 @@ defmodule InstaInsta do
         end_cursor: end_cursor
       }),
       do:
-        "https://instagram.com/graphql/query/?query_id=17851374694183129&id=#{user_id}&first=#{
+        "https://www.instagram.com/graphql/query/?query_id=17851374694183129&id=#{user_id}&first=#{
           count
         }&after=#{end_cursor}"
 
@@ -102,7 +102,7 @@ defmodule InstaInsta do
         end_cursor: end_cursor
       }),
       do:
-        "https://instagram.com/graphql/query/?query_id=17874545323001329&id=#{user_id}&first=#{
+        "https://www.instagram.com/graphql/query/?query_id=17874545323001329&id=#{user_id}&first=#{
           count
         }&after=#{end_cursor}"
 
