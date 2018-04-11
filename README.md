@@ -82,5 +82,5 @@ Use at your own risk
 ## License
 	InstaInsta is released into the public domain. See [UNLICENSE](http://unlicense.org/) for more information or the accompanying UNLICENSE file.
 
-## Support
+## Contact
   [Mail me if you want](mailto:flavio.killstars@gmail.com).
