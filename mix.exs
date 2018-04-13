@@ -4,13 +4,14 @@ defmodule InstaInsta.Mixfile do
   def project do
     [
       app: :insta_insta,
-      version: "0.0.1",
+      version: "0.1.0",
       elixir: "~> 1.3",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       name: "InstaInsta",
-      description: "Instagram JSON and HTML endpoints without a API key, inspired on InstaScrapex",
+      description:
+        "Instagram JSON and HTML endpoints without a API key, inspired on InstaScrapex",
       package: [
         maintainers: ["Flavio Vinicius"],
         licenses: ["UNLICENSE"],
