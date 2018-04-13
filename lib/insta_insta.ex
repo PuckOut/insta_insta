@@ -12,7 +12,7 @@ defmodule InstaInsta do
   # User Profile
   # URL => https://www.instagram.com/#{username}/?__a=1
   def generate_url("user_profile", %{username: username}),
-    do: "https://www.instagram.com/#{username}/?__a=1"
+    do: "https://www.instagram.com/#{username}/"
 
   # User Media
   # URL => https://instagram.com/graphql/query/?query_id=17888483320059182&id=#{user_id}&first=#{count}&after=#{end_cursor}
@@ -106,7 +106,13 @@ defmodule InstaInsta do
           count
         }&after=#{end_cursor}"
 
-  def user_profile(username), do: run("user_profile", %{username: username})
+  def user_profile(username) do
+    http_response = run("user_profile", %{username: username})
+
+    Regex.scan(~r/(?<=\window._sharedData =)(.*\n?)(?=;<\/script>)/, http_response.body)
+    |> List.first()
+    |> List.first()
+  end
 
   def user_media(user_id, count, end_cursor \\ ""),
     do:
