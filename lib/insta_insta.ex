@@ -126,11 +126,10 @@ defmodule InstaInsta do
         fake_headers(true)
       )
 
-  def search_by_tag(tag, max_id \\ ""),
-    do: run("search_by_tag", %{tag: tag, max_id: max_id}, fake_headers(true))
+  def search_by_tag(tag, max_id \\ ""), do: run("search_by_tag", %{tag: tag, max_id: max_id})
 
   def search_by_location(location_id, max_id \\ ""),
-    do: run("search_by_location", %{location_id: location_id, max_id: max_id}, fake_headers(true))
+    do: run("search_by_location", %{location_id: location_id, max_id: max_id})
 
   def search_user(query, context \\ "blended", rank_token \\ 0.4948977584648091),
     do:
@@ -192,7 +191,12 @@ defmodule InstaInsta do
 
   @doc false
 
-  defp run(type, params, headers \\ fake_headers(), options \\ []) do
+  defp run(
+         type,
+         params,
+         headers \\ fake_headers(),
+         options \\ [timeout: 50_000, recv_timeout: 50_000]
+       ) do
     generate_url(type, params)
     |> get!(headers, options)
   end
