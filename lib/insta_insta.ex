@@ -30,7 +30,7 @@ defmodule InstaInsta do
   # Search by Tag
   # URL => https://www.instagram.com/explore/tags/#{tag}/?__a=1&max_id=#{max_id}
   def generate_url("search_by_tag", %{tag: tag, max_id: max_id}),
-    do: "https://www.instagram.com/explore/tags/#{tag}/?__a=1&after=#{max_id}"
+    do: "https://www.instagram.com/explore/tags/#{tag}/?__a=1&max_id=#{max_id}"
 
   # Search by Location
   # URL => https://www.instagram.com/explore/locations/#{location_id}/?__a=1&max_id=#{max_id}
